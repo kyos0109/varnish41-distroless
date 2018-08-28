@@ -13,12 +13,7 @@ RUN	mkdir -p /opt/lib && \
     cp -a /lib64/libpcre.so.* /opt/lib && \
     cp -a --parents /usr/lib64 /opt && \
     cp -a --parents /var/lib/varnish /opt && \
-    cp -a --parents /lib64/libdl.so.* /opt && \
-    cp -a --parents /lib64/libnsl.so.* /opt && \
-    cp -a --parents /lib64/libm.so.* /opt && \
-    cp -a --parents /lib64/libpthread.so.* /opt && \
-    cp -a --parents /lib64/libc.so.* /opt && \
-    cp -a --parents /lib64/librt.so.* /opt && \
+    cp -a --parents /lib64 /opt && \
     cp -a --parents /usr/lib/gcc /opt && \
     cp -a --parents /usr/sbin/varnishd /opt && \
     cp -a --parents /bin/sh /opt && \
