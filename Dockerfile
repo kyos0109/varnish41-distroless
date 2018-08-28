@@ -22,7 +22,6 @@ RUN cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /usr/lib64/crt* /opt && \
     cp -a --parents /usr/lib64/libpthread* /opt && \
     cp -a --parents /usr/lib64/libc* /opt && \
-    cp -a --parents /lib64/libtinfo.so.* /opt && \
     cp -a --parents /usr/lib/gcc /opt && \
     cp -a --parents /usr/libexec/gcc /opt && \
     cp -a --parents /usr/sbin/varnishd /opt && \
