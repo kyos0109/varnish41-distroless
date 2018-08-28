@@ -5,11 +5,14 @@ COPY varnish41.repo /etc/yum.repos.d/varnish41.repo
 RUN yum install epel-release -y && \
     yum update -y && \
     yum install varnish -y && \
-    yum clean all && \
-	mkdir -p /opt/lib && \
+    yum clean all
+
+
+RUN	mkdir -p /opt/lib && \
     cp -a /usr/lib64/libjemalloc.so.* /opt/lib && \
     cp -a /lib64/libpcre.so.* /opt/lib && \
-    cp -a --parents /usr/lib64/varnish /opt && \
+    cp -a --parents /usr/lib64 /opt && \
+    cp -a --parents /var/lib/varnish /opt && \
     cp -a --parents /lib64/libdl.so.* /opt && \
     cp -a --parents /lib64/libnsl.so.* /opt && \
     cp -a --parents /lib64/libm.so.* /opt && \
@@ -24,8 +27,6 @@ RUN yum install epel-release -y && \
 
 FROM gcr.io/distroless/base
 
-VOLUME [ "/var/lib/varnish" ]
-
 COPY --from=0 /opt /
 
-ENTRYPOINT [ "varnishd", "-F" ]
+CMD [ "varnishd", "-F" ]
