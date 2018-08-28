@@ -6,13 +6,14 @@ RUN yum install epel-release -y && \
     yum update -y && \
     yum install varnish -y && \
     yum clean all && \
-    mkdir -p /opt/lib && \
+    mkdir -p /opt && \
+    cp -a --parents /lib /opt && \
     cp -a /usr/lib64/libjemalloc.so.* /opt/lib && \
     cp -a /lib64/libpcre.so.* /opt/lib && \
     cp -a --parents /usr/lib64 /opt && \
     cp -a --parents /var/lib/varnish /opt && \
     cp -a --parents /lib64 /opt && \
-    cp -a --parents /etc/varnish && \
+    cp -a --parents /etc/varnish /opt && \
     cp -a --parents /usr/lib/gcc /opt && \
     cp -a --parents /usr/sbin/varnishd /opt && \
     cp -a --parents /bin/sh /opt && \
