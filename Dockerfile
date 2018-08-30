@@ -22,10 +22,11 @@ RUN cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /usr/lib64/crt* /opt && \
     cp -a --parents /usr/lib64/libpthread* /opt && \
     cp -a --parents /usr/lib64/libc* /opt && \
+    cp -a --parents /usr/lib64/libcidn.so /opt && \
+    cp -a --parents /usr/lib64/libgomp.so.* /opt && \
     cp -a --parents /usr/lib/gcc /opt && \
     cp -a --parents /usr/libexec/gcc /opt && \
     cp -a --parents /usr/sbin/varnishd /opt && \
-    cp -a --parents /lib64 /opt && \
     cp -a --parents /lib64/ld-2.12.so /opt && \
     cp -a --parents /lib64/ld-linux-x86-64.so.* /opt && \
     cp -a --parents /lib64/libbz2.so.* /opt && \
@@ -51,6 +52,8 @@ RUN cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /lib64/libnss_dns* /opt && \
     cp -a --parents /lib64/libnss_files* /opt && \
     cp -a --parents /lib64/libnss_hesiod* /opt && \
+    cp -a --parents /lib64/libcidn* /opt && \
+    cp -a --parents /lib64/libgcc_s* /opt && \
     cp -a --parents /etc/varnish /opt
 
 FROM gcr.io/distroless/base
@@ -60,4 +63,6 @@ COPY --from=0 /bin/sh /bin/sh
 
 VOLUME /var/lib/varnish
 
-CMD [ "varnishd", "-F" ]
+ENTRYPOINT [ "varnishd", "-F" ]
+
+CMD [ "-h" ]
