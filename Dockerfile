@@ -1,5 +1,8 @@
 FROM centos:6.10
 
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+ARG TIME_ZONE
+
 COPY varnish41.repo /etc/yum.repos.d/varnish41.repo
 
 RUN yum install epel-release -y && \
@@ -54,7 +57,8 @@ RUN cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /lib64/libnss_hesiod* /opt && \
     cp -a --parents /lib64/libcidn* /opt && \
     cp -a --parents /lib64/libgcc_s* /opt && \
-    cp -a --parents /etc/varnish /opt
+    cp -a --parents /etc/varnish /opt && \
+    cp /usr/share/zoneinfo/${TIME_ZONE:-ROC} /opt/etc/localtime
 
 FROM gcr.io/distroless/base
 
