@@ -58,6 +58,7 @@ RUN cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /lib64/libcidn* /opt && \
     cp -a --parents /lib64/libgcc_s* /opt && \
     cp -a --parents /etc/varnish /opt && \
+    cp -a --parents /usr/share/terminfo/x /opt && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-ROC} /opt/etc/localtime
 
 FROM gcr.io/distroless/base
@@ -65,8 +66,6 @@ FROM gcr.io/distroless/base
 COPY --from=0 /opt /
 COPY --from=0 /bin/sh /bin/sh
 
-VOLUME /var/lib/varnish
-
-ENTRYPOINT [ "varnishd", "-F" ]
+ENTRYPOINT [ "varnishd", "-F", "-n", "/tmp" ]
 
 CMD [ "-h" ]
