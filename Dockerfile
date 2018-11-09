@@ -10,7 +10,9 @@ RUN yum install epel-release -y && \
     yum install varnish -y && \
     yum clean all
 
-RUN cp -a --parents /usr/bin/varnish* /opt && \
+RUN mkdir -p /opt/var/lib/varnish && \
+    cp -a --parents /bin/cp /opt && \
+    cp -a --parents /usr/bin/varnish* /opt && \
     cp -a --parents /usr/bin/gcc /opt && \
     cp -a --parents /usr/bin/as /opt && \
     cp -a --parents /usr/bin/ld /opt && \
@@ -66,6 +68,6 @@ FROM gcr.io/distroless/base
 COPY --from=0 /opt /
 COPY --from=0 /bin/sh /bin/sh
 
-ENTRYPOINT [ "varnishd", "-F", "-n", "/tmp" ]
+ENTRYPOINT [ "varnishd", "-F" ]
 
 CMD [ "-h" ]
