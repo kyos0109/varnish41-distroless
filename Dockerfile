@@ -59,6 +59,9 @@ RUN mkdir -p /opt/var/lib/varnish && \
     cp -a --parents /lib64/libnss_hesiod* /opt && \
     cp -a --parents /lib64/libcidn* /opt && \
     cp -a --parents /lib64/libgcc_s* /opt && \
+    cp -a --parents /lib64/libselinux.so.* /opt && \
+    cp -a --parents /lib64/libacl.so.* /opt && \
+    cp -a --parents /lib64/libattr.so.* /opt && \
     cp -a --parents /etc/varnish /opt && \
     cp -a --parents /usr/share/terminfo/x /opt && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-ROC} /opt/etc/localtime
